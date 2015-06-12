@@ -1,5 +1,7 @@
 package com.vquochuy.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -25,9 +27,15 @@ public class PersonController {
 
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
 	public String getPersons(Model model) {
-		model.addAttribute("person", new Person());
-		model.addAttribute("listPersons", this.personService.listPersons());
-		return "person";
+		try {
+			model.addAttribute("person", new Person());
+			List<Person> personList = this.personService.listPersons();
+			model.addAttribute("listPersons", personList);
+			return "person";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	// For add and update person both
