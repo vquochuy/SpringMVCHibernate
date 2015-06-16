@@ -4,15 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.vquochuy.spring.model.Person;
+import com.vquochuy.spring.response.Response;
 
 public interface GenericService<T extends Serializable> {
-	public void create(T t);
+	public Response create(T t);
 
-	public void update(T t);
+	public Response update(T t);
 
-	public List<T> getAll();
+	public Response getAll();
 
-	public Person getById(int id);
+	public Response getById(int id);
 
-	public void delete(int id);
+	public Response delete(int id);
 }
